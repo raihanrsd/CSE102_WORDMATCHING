@@ -1,0 +1,18 @@
+{% extends "wordle/layout.html" %}
+
+{% block body %}
+    <h1>Welcome to my wordle game!</h1>
+
+    <div class="main_div">
+        <div class="grid">
+        </div>
+    </div>
+    <script>
+        let row = 0, col = 0, col_check = 0, row_check = 0;
+        
+        initiate_game({{word.row}}, {{word.col}}, "{{word.word}}");
+        
+            
+    </script>
+
+{% endblock %}

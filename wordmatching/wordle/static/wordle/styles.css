@@ -1,0 +1,22 @@
+body{
+    background: linear-gradient(30deg, rgb(7, 185, 250) 60%, rgb(144, 235, 255) 50%);
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    width: 1000px;
+}
+
+.grid input{
+    background: greenyellow;
+    width: 100px;
+    height: 100px;
+    margin: 30px;
+    flex: 0 0 100px;
+    font-size: 30px;
+    padding: 10px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+}

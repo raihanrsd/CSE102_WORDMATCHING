@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Wordle{% endblock %}</title>
+        <link href="{% static 'wordle/main.js' %}">
+        <link href="{% static 'wordle/styles.css' %}" rel="stylesheet">
+        <script src="{% static 'wordle/main.js' %}"></script>
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+            
+    </body>
+</html>
