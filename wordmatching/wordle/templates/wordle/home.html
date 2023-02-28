@@ -1,0 +1,43 @@
+{% extends "wordle/layout.html" %}
+
+{% block body %}
+
+        <p>Guess the WORDLE in 6 tries.</p>
+        {% if not user.is_authenticated %}
+        <p>You will need to register in order to track your progress throughout the game! In order to register please click the user icon in the layout</p>
+        {% endif %}
+        <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+        <p><b>Each guess must be a word with the same number of letters as the number of squares horizontally.The example below is 5 letters.</b></p>
+        <p>In addition, you can set the number of letters you want to play in the settings. <br>
+            To start the game, just enter any word, for example:</p>
+        <img src="../static/wordle/1.png" alt="image" width="700" height="250">
+        <h1>Play the game!</h1>
+        <div class="level_div">
+            <a href="{% url 'index' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                </svg>
+            </a>
+        </div>
+        <p>Another try to find matching letters in the target word.</p>
+        <img src="../static/wordle/2.png" alt="image" width="600" height="150">
+        <p>You are so close!</p>
+        <img src="../static/wordle/3.png" alt="image" width="600" height="150">
+        <p><b>And You got it!</b></p>
+        <h3>What is wordle?</h3>
+        <p>The wordle game is a straightforward game in which the player has six chances to correctly guess a randomly chosen 5-letter crossword. <br>
+            To win this game, you will need to use your knowledge and discretion. You'll be able to make the greatest decisions and responses with the 
+            <br>aid of the element of focus. You lose if, after six tries, you are still unable to properly guess the keyword!</p>
+
+        <h3>How to play Wordle?</h3>
+        <p>Guess the WORDLE in 6 tries.<br>
+
+            Each guess must be a valid 5-letter word. Hit the enter button to submit.<br>
+            
+            After each guess, the color of the tiles will change to show how close your guess was to the word.<br></p>
+
+
+    
+
+{% endblock %}

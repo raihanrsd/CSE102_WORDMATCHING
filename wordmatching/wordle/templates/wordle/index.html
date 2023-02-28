@@ -1,18 +1,45 @@
 {% extends "wordle/layout.html" %}
 
 {% block body %}
-    <h1>Welcome to my wordle game!</h1>
-
+    
+    <div class="first_row"> 
+        {% if user.is_authenticated %}
+        <button class="give_up_button" onclick="quit_game('{{word.row}}' , '{{word.col}}', '{{user.id}}')">Give Up!</button>
+        {% else %}
+        <button class="give_up_button" onclick="quit_game_nice('{{word.row}}' , '{{word.col}}')">Give Up!</button>
+        {% endif %}
+        <div class="timer_div">
+            <h3>Timer: &nbsp;&nbsp;  </h3><h3 id="timer">0:00</h3>
+        </div>
+    </div>
     <div class="main_div">
         <div class="grid">
         </div>
     </div>
+    
+    <div class="result_div">
+        <div class="result_heading">
+            <div></div>
+            <p class="result">DISPLAY</p>
+            <button class="result_btn" onclick="close_popup()">X</button>
+        </div>
+
+        <div class="result_content">
+            <p class="result_content_result">You have done nothing!</p>
+            <p class="correct_word">{{word.word}}</p>
+            <a href="{% url 'index' %}" style="text-decoration:none;"><button class="restart">RESTART</button></a>
+        </div>
+        
+    </div>
     <script>
+        
         let row = 0, col = 0, col_check = 0, row_check = 0;
-        
-        initiate_game({{word.row}}, {{word.col}}, "{{word.word}}");
-        
-            
+        let gameover = false;
+        let user_id = 1;
+        {% if user.is_authenticated %}
+            user_id = {{user.id}}
+        {% endif %}
+        initiate_game(parseInt("{{word.row}}"), 5, "{{word.word}}", user_id);
     </script>
 
 {% endblock %}

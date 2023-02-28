@@ -1,0 +1,21 @@
+{% extends "wordle/layout.html" %}
+
+{% block body %}
+<h1>Login</h1>
+{% if message %}
+        <div style="color:red;">{{ message }}</div>
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="generic_form">
+        <input autofocus type="text" name="username" placeholder="Username">
+    </div>
+    <div class="generic_form">
+        <input type="password" name="password" placeholder="Password">
+    </div>
+    <input type="submit" class="inp_btn" value="Login">
+</form>
+
+Don't have an account? <a href="{% url 'register' %}" class="page_url">Register here.</a> <br>
+
+{% endblock %}
