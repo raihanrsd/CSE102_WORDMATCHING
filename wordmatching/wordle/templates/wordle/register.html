@@ -11,16 +11,16 @@
 <form action="{% url 'register' %}" method="post" >
     {% csrf_token %}
     <div class="generic_form">
-        <input autofocus type="text" name="username" placeholder="Username">
+        <input autofocus type="text" name="username" placeholder="Username" required>
     </div>
     <div class="generic_form">
-        <input type="email" name="email" placeholder="Email Address">
+        <input type="email" name="email" placeholder="Email Address" required>
     </div>
     <div class="generic_form">
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" required>
     </div>
     <div class="generic_form">
-        <input type="password" name="confirmation" placeholder="Confirm Password">
+        <input type="password" name="confirmation" placeholder="Confirm Password" required>
     </div>
     <input class="inp_btn" type="submit" value="Register">
 </form>

@@ -10,7 +10,13 @@
         <p><b>Each guess must be a word with the same number of letters as the number of squares horizontally.The example below is 5 letters.</b></p>
         <p>In addition, you can set the number of letters you want to play in the settings. <br>
             To start the game, just enter any word, for example:</p>
-        <img src="../static/wordle/1.png" alt="image" width="700" height="250">
+        <div class="special_rep"><p class="correct_position_letter">B</p><p>E</p><p class="correct_letter">A</p><p class="correct_letter">S</p><p>T</p></div>
+        <div class="nice_looking_div">
+
+            <div>The letter <div class="special_rep_2 correct_position_letter">B</div> is in the word and in the correct spot.</div>
+            <div>The letter <div class="special_rep_2">E</div>, <div class="special_rep_2">T</div> aren't in the target word at all.</div>
+            <div>The letter <div class="special_rep_2 correct_letter">A</div>, <div class="special_rep_2 correct_letter">S</div> is in the word but in the wrong spot.</div>
+        </div>
         <h1>Play the game!</h1>
         <div class="level_div">
             <a href="{% url 'index' %}">
@@ -21,9 +27,9 @@
             </a>
         </div>
         <p>Another try to find matching letters in the target word.</p>
-        <img src="../static/wordle/2.png" alt="image" width="600" height="150">
+        <div class="special_rep"><p class="correct_position_letter">B</p><p class="correct_position_letter">A</p><p class="correct_position_letter">N</p><p>D</p><p class="correct_position_letter">S</p></div>
         <p>You are so close!</p>
-        <img src="../static/wordle/3.png" alt="image" width="600" height="150">
+        <div class="special_rep"><p class="correct_position_letter">B</p><p class="correct_position_letter">A</p><p class="correct_position_letter">N</p><p class="correct_position_letter">K</p><p class="correct_position_letter">S</p></div>
         <p><b>And You got it!</b></p>
         <h3>What is wordle?</h3>
         <p>The wordle game is a straightforward game in which the player has six chances to correctly guess a randomly chosen 5-letter crossword. <br>

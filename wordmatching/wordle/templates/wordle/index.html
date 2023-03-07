@@ -33,13 +33,11 @@
     </div>
     <script>
         
-        let row = 0, col = 0, col_check = 0, row_check = 0;
-        let gameover = false;
         let user_id = 1;
         {% if user.is_authenticated %}
             user_id = {{user.id}}
         {% endif %}
-        initiate_game(parseInt("{{word.row}}"), 5, "{{word.word}}", user_id);
+        initiate_game(6, info.word_amount, "{{word.word}}", user_id, info.game_level);
     </script>
 
 {% endblock %}

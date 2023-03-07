@@ -37,6 +37,15 @@ def register(request):
             return render(request, "wordle/register.html", {
                 "message": "Passwords must match."
             })
+        if email == "":
+            return render(request, "wordle/register.html", {
+                "message": "Please Provide a valid email"
+            })
+
+        if password == "":
+            return render(request, "wordle/register.html", {
+                "message": "Please Provide a valid Password."
+            })
 
         # Attempt to create new user
         try:
@@ -88,8 +97,6 @@ def get_info(request, user_id, status, tries):
         data = json.loads(request.body)
         total_seconds = user.average_duration.total_seconds()
         total_seconds *= user.games_won 
-        print(data.get("duration", ""))
-        print(total_seconds)
         total_seconds += data.get("duration", "")
     
 

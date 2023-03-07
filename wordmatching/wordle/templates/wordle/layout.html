@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}Wordle{% endblock %}</title>
+        <title>{% block title %}Wizzle{% endblock %}</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link href="{% static 'wordle/main.js' %}">
         <link href="{% static 'wordle/styles.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../static/wordle/logo.png">
         <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
         
         <script src="{% static 'wordle/main.js' %}"></script>
@@ -15,42 +16,45 @@
         <div class="header">
             <div>
                 {% if user.is_authenticated %}
-                <a href="#" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16" style="color:#57ac57">
+                <a href="#" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check svgi" viewBox="0 0 16 16" style="color:#57ac57">
                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
                     <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
                 </svg></a>
                 {% else %}
-                <a href="{% url 'register' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <a href="{% url 'register' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person svgi" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                 </svg></a>
                 {% endif %}
-                <a href="{% url 'index' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                <a href="{% url 'index' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat svgi" viewBox="0 0 16 16">
                     <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
                     <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
                 </svg></a>
+                <a href="#" class="heading_icons" onclick="show_settings_view()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders svgi" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
+                </svg></a>
                 
             </div>
-            <a href="{% url 'home' %}" style="text-decoration:none;" class="heading_icons"><h1 style="text-align:center">WORDLE!</h1></a>
+            <a href="{% url 'home' %}" style="text-decoration:none;"><h1 style="text-align:center" class="heading_h1">WIZZLE!</h1></a>
             <div>
                 {% if user.is_authenticated %}
-                <a href="#" onclick="fun_function_user()" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
+                <a href="#" onclick="fun_function_user()" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart svgi" viewBox="0 0 16 16">
                     <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
                 </svg></a>
                 {% else %}
-                <a href="#" onclick="fun_function()" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
+                <a href="#" onclick="fun_function()" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart svgi" viewBox="0 0 16 16">
                     <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
                 </svg></a>
                 {% endif %}
-                <a href="{% url 'home' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+                <a href="#" class="heading_icons" onclick="User_help_view()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-lg svgi" viewBox="0 0 16 16">
                     <path d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704l1.323-6.208Zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0Z"/>
                 </svg></a>
                 {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                <a href="{% url 'logout' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left svgi" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
                     <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                 </svg></a>
                 {% else %}
-                <a href="{% url 'login' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-exclamation" viewBox="0 0 16 16">
+                <a href="{% url 'login' %}" class="heading_icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-exclamation svgi" viewBox="0 0 16 16">
                     <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
                     <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5Zm0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z"/>
                   </svg></a>
@@ -62,7 +66,11 @@
             {% endblock %}
         </div>
         <div id="User_progress_view">
-            <div class="stats_div">Statistics</div>
+            <div class="stats_div">
+                <div></div>
+                <p>Statistics</p>
+                <div><button class="revert_button" onclick="revert_func()">X</button></div>
+            </div>
             {% if user.is_authenticated %}
                 <div class="stat_box">
                     <div class="game_played">
@@ -114,6 +122,107 @@
             {% endif %}
         </div>
     </body>
+
+    <div id="User_help_view">
+        <div class="stats_div">
+            <div></div>
+            <p>How to play!</p>
+            <div><button class="revert_button" onclick="revert_func()">X</button></div>
+        </div>
+        <p>You get six chances to guess the secret word, and the color of the letters changes to indicate your progress.</p>
+        <p>Just enter any word to start the game. For example:</p>
+        <div class="special_rep"><p>H</p><p>E</p><p class="correct_position_letter">L</p><p class="correct_position_letter">L</p><p class="correct_letter">O</p></div>
+        <div class="nice_looking_div">
+            <div><div class="special_rep_2">H</div>,<div class="special_rep_2">E</div>aren't in the target word at all.</div>
+            <div><div class="special_rep_2 correct_letter">O</div> is in the word but in the wrong spot.</div>
+            <div><div class="special_rep_2 correct_position_letter">L</div> is in the word and in the correct spot.</div>
+        </div>
+        <p>Another try to find matching letters in the target word.</p>
+        <div class="special_rep"><p>W</p><p class="correct_position_letter">O</p><p>R</p><p class="correct_position_letter">L</p><p>D</p></div>
+        <p>So close!</p>
+        <div class="special_rep"><p class="correct_position_letter">F</p><p class="correct_position_letter">O</p><p class="correct_position_letter">L</p><p class="correct_position_letter">L</p><p class="correct_position_letter">Y</p></div>
+        <h2>Got it! 🏆</h2>
+    </div>
+
+    <div id="settings_view">
+        <div class="stats_div">
+            <div></div>
+            <p>Settings</p>
+            <div><button class="revert_button" onclick="revert_func()">X</button></div>
+        </div>
+        <h3>Select Number of Letters</h3>
+        <div class="letter_num_btns">
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="4" id="lev_btns_4">4</button>
+            <button class="lev_btns" onclick="change_word_num(this)" data-classname="lev_btns" data-wordnum="5" id="lev_btns_5">5</button>
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="6" id="lev_btns_6">6</button>
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="7" id="lev_btns_7">7</button>
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="8" id="lev_btns_8">8</button>
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="9" id="lev_btns_9">9</button>
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="10" id="lev_btns_10">10</button>
+            <button onclick="change_word_num(this)" class="lev_btns" data-classname="lev_btns" data-wordnum="11" id="lev_btns_11">11</button>
+        </div>
+        
+        <div class="darkmode_div">
+            <div><h3>Darkmode</h3></div>
+            <div id="toggle_button">
+                <input type="checkbox" class="toggle_btn_checkbox" id="toggle_btn_1">
+                <label for="toggle_btn_1"></label>
+            </div>
+        </div>
+
+        <div class="game_level">
+            <div><h3>Game Level</h3></div>
+            <div class="game_level_div">
+                <button class="level_change_btns" onclick="change_level_func(this)" data-level="easy" id="level_change_btns_easy" data-classname="level_change_btns">Easy</button>
+                <button class="level_change_btns" onclick="change_level_func(this)" data-level="legendary" id="level_change_btns_legendary" data-classname="level_change_btns">Legendary</button>
+            </div>
+        </div>
+        
+    </div>
+
+    
+
+    <script>
+
+        
+
+        //let info = JSON.parse(localStorage.getItem('game_info'));
+        if(info.mode === "dark"){
+            console.log("comes");
+            const toggle_checkbox = document.querySelector('.toggle_btn_checkbox');
+            toggle_checkbox.checked = true;
+            document.body.classList.add("dark");
+        }
+
+        let settings_btn = document.getElementById(`lev_btns_${info.word_amount}`);
+        settings_btn.classList.add("selected_letter_num");
+
+
+        let game_level_handler = document.getElementById(`level_change_btns_${info.game_level}`);
+        game_level_handler.classList.add("selected_letter_num");
+
+        const toggle_checkbox = document.querySelector('.toggle_btn_checkbox');
+        toggle_checkbox.addEventListener('change', ()=>{
+            if(toggle_checkbox.checked){
+                document.body.classList.add("dark");
+                info.mode = "dark";
+                localStorage.setItem('game_info', JSON.stringify(info));
+            }
+            else{
+                document.body.classList.remove("dark");
+                info.mode = "light";
+                localStorage.setItem('game_info',JSON.stringify(info));
+            }
+        });
+        const svgIcons = document.querySelectorAll('.svgi');
+
+        svgIcons.forEach(function(svgi){
+            svgi.addEventListener('click',()=>{
+                svgIcons.forEach(icons => icons.classList.remove('selected_svg'));
+                svgi.classList.add('selected_svg');
+            });
+        });
+    </script>
 
 
 </html>
