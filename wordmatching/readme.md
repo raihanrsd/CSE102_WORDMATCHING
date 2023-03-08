@@ -5,11 +5,11 @@ This is a web-based implementation of the popular Wordle game, built with Django
 
 ## Gameplay
 
-The game starts with a random word, which the player must guess within six attempts. The player inputs a word and clicks the "Guess" button to submit their guess. The game then provides feedback in the form of colored squares, indicating which letters are present in the target word and whether they are in the correct position or not.
+The game starts with a random word, which the player must guess within six attempts. The player inputs a word and clicks the "Enter" button(or click their keyboard's enter) to submit their guess. The game then provides feedback in the form of colored squares, indicating which letters are present in the target word and whether they are in the correct position or not.
 
 If the player successfully guesses the word within six attempts, they win the game. Otherwise, they lose and the correct word is revealed.
 
-If you open the game you will get a detailed tutorial on how to play the game as I have added them in the home page which is much more easier to understand.
+If you open the game you will get a detailed tutorial on how to play the game as I have added them in the home page which is much more easier to understand. I have also provided an icon svg by clicking which you might find a tutorial while playing the game and your game won't be hindered.
 
 
 ## Distinctiveness and Complexity:
@@ -24,6 +24,21 @@ The way I achieved is by storing all the words in a JS map initially when the ga
 - Care has been taken that regardless of where the user input(in the boxes) my string would always be formed or deleted in that order.
 
 - I have also added a timer and also counter average time of guessing the word for each user, which the actual game doens't have.
+
+
+## What each file does
+
+* **main.js:** This file contains the main logic and a lot of other functiosn that run the game. All the animations and fetch call are also controlled by this file. 
+* **views.py:** This file was basically used to update the user's stats after each gameplay. This is also used to register, login and logout user.
+* **styles.css:** Controls the layout and responsiveness of the website and also controls the mode of light/dark.
+* **layout.html:** This file links all the static files to the html template and also contains some code and a lot of other views.
+* **index.html:** This file is rendered when the game is being played. All the game elements are added using js to this file.
+* **models.py:** A user and a word model can be seen from in this file. Word generation from the server option was kept but it is not used for the current version of the game.
+* **words.txt:** This file has more than 450000 words which is basically used to verify if a word is in the dictionary and also generates word for the legendary level difficulty.
+* **small_dict.txt:** This file just contains all the commonly used words taken from Oxford 3000. This is used to generate a random word for easy level difficulty and makes the gameplay much more easier.
+ * **home.html:** Gives a bried tutorial of the game.
+ * **other files:** All other files are basically same or some minor changes were brought to them.
+
 
 
 

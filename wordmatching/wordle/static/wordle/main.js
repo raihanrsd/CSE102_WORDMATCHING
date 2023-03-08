@@ -68,7 +68,7 @@ async function initiate_game(rows, cols, word, user_id, game_level){
     let grid = document.querySelector(`.grid`);
     word = words_arr[rand_num].toUpperCase();
     correct_word = word;
-    //console.log(word);
+    console.log(word);
 
     // creating the grid
     for(var i = 0; i < rows; i++){
@@ -424,8 +424,11 @@ function fun_function_user(){
 
 function save_progress(user_id, status, tries, duration){
     console.log("yes");
-    console.log("This is the duration");
-    console.log(duration);
+    console.log("This is the tries");
+    if(row == 5){
+        tries = "6";
+    }
+    console.log(tries);
     fetch(`/get_info/${user_id}/${status}/${tries}`,{
         method: 'POST',
         body: JSON.stringify({
