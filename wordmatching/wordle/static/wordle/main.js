@@ -25,7 +25,8 @@ fetch('/static/wordle/words.txt')
 .then(text =>{
     const words = text.split('\n');
     for(const word in words){
-        if(words[word].length === info.word_amount){
+        if(words[word].length === info.word_amount && validateWord(words[word])){
+            
             dict.set(words[word].toLowerCase(), true);  
         }
     }
@@ -44,7 +45,7 @@ async function loadWords(letter_num, file_path) {
         words_arr.push(words[word]);
       }
     }
-    console.log(count);
+    //console.log(count);
     let rand = Math.random() * count;
     rand = Math.floor(rand);
     rand_num = rand;
@@ -69,6 +70,10 @@ async function initiate_game(rows, cols, word, user_id, game_level){
     word = words_arr[rand_num].toUpperCase();
     correct_word = word;
     console.log(word);
+    console.log(count);
+
+    console.log(validateWord("credit card"));
+
 
     // creating the grid
     for(var i = 0; i < rows; i++){
@@ -163,7 +168,7 @@ async function initiate_game(rows, cols, word, user_id, game_level){
             let str_nice = str.split("");
             str_nice.splice(col, 0, input.value.toUpperCase());
             str = str_nice.join("");
-            console.log(str);
+            //console.log(str);
             
             if(col == cols - 1){
                 
@@ -428,7 +433,7 @@ function save_progress(user_id, status, tries, duration){
     if(row == 5){
         tries = "6";
     }
-    console.log(tries);
+    //console.log(tries);
     fetch(`/get_info/${user_id}/${status}/${tries}`,{
         method: 'POST',
         body: JSON.stringify({
@@ -437,8 +442,8 @@ function save_progress(user_id, status, tries, duration){
     })
     .then(response => response.json())
     .then(post =>{
-        console.log(`It works on this id${user_id}`)
-        console.log(post);
+        //console.log(`It works on this id${user_id}`)
+        //console.log(post);
     })
 }
 
@@ -653,7 +658,7 @@ function deleting_letter_func(str, row, col){
         let str_nice = str.split('');
         str_nice.splice(col, 1);
         str = str_nice.join('');
-        console.log(str);
+        //console.log(str);
         let input_next = document.getElementById(`input-${row}-${col}`);
         //last_input_bx = input_next;
         input_next.focus();
@@ -665,7 +670,7 @@ function deleting_letter_func(str, row, col){
         let str_nice = str.split('');
         str_nice.splice(col, 1);
         str = str_nice.join('');
-        console.log(str);
+        //console.log(str);
     }
     return str;
 }
@@ -693,6 +698,14 @@ function change_level_func(x){
     info.game_level = level;
     localStorage.setItem('game_info', JSON.stringify(info));
     location.reload();
+}
+
+function validateWord(word){
+    const trimmedWord = word.trim();
+    if(trimmedWord.indexOf(" ") !== -1){
+        return false;
+    }
+    return true;
 }
 
 
